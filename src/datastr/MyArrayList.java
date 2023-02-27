@@ -10,7 +10,7 @@ public class MyArrayList {
 	public MyArrayList() {
 		elements = new char[arraySize]; //masivs ar 6 sunam
 	}
-	//args constructor
+	//arg constructor
 	public MyArrayList(int inputArraySize) {
 		if(inputArraySize > 0) {
 			arraySize = inputArraySize;
@@ -46,5 +46,32 @@ public class MyArrayList {
 		}
 		elements = newElements;
 		arraySize = newArraySize;
+	}
+	
+	public void add(char newElement) {
+		if (isFull()) {
+			increaseArray();
+		}
+		elements[elementCounter++] = newElement;
+		//elementCounter++;
+	}
+	
+	public void add(char newElement, int index) {
+		if (index >= 0 && index <= elementCounter) {
+			if (isFull()) {
+				increaseArray();
+			}
+			for(int i = elementCounter; i>index; i--) {
+				elements[i] = elements[i-1];
+			}
+			elements[index] = newElement;
+			elementCounter++;
+		}
+		else {
+			throw (new Exception("Wrong index"));
+		}
+	}
+	public void delete() {
+		
 	}
 }
