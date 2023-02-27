@@ -56,7 +56,7 @@ public class MyArrayList {
 		//elementCounter++;
 	}
 	
-	public void add(char newElement, int index) {
+	public void add(char newElement, int index) throws Exception {
 		if (index >= 0 && index <= elementCounter) {
 			if (isFull()) {
 				increaseArray();
@@ -71,7 +71,60 @@ public class MyArrayList {
 			throw (new Exception("Wrong index"));
 		}
 	}
-	public void delete() {
-		
+	public void remove(char newElement, int index) throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Nothing to delete"));
+		}
+		else {
+			if (index >= 0 && index <= elementCounter) {
+				for(int i = index; i<elementCounter; i++) {
+					elements[i] = elements[i+1];
+				}
+				elements[elementCounter-1] = 0;
+			}
+			else {
+				throw (new Exception("Wrong index"));
+			}
+		}
+	}
+	public int get(int index) throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Nothing to return"));
+		}
+		if (index >= 0 && index <= elementCounter) {
+			return elements[index];
+		}
+		else {
+			throw (new Exception("Wrong index"));
+		}
+	}
+	public boolean find(char newElement) throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Nothing to find"));
+		}
+		for (int i=0; i < elementCounter; i++) {
+			if(newElement == i) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//TODO retrieveNextNeighbor
+	//TODO sort
+	
+	public void print() throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Nothing to print"));
+		}
+		for (int i=0; i < elementCounter; i++) {
+			System.out.print(elements[i] + " ");
+		}
+		System.out.println();
+	}
+	public void clear() {
+		arraySize = DEFAULT_ARRAY_SIZE;
+		elementCounter = 0;
+		elements = new char[arraySize];
 	}
 }
