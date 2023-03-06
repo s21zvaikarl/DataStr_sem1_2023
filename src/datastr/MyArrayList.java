@@ -103,14 +103,13 @@ public class MyArrayList {
 			throw (new Exception("Nothing to find"));
 		}
 		for (int i=0; i < elementCounter; i++) {
-			if(newElement == i) {
+			if(newElement == elements[i]) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	//TODO retrieveNextNeighbor
 	public char[] retrieveNextNeighbours(char inputElement) throws Exception {
 		if(find(inputElement)) {
 			int howManySearchedElements = 0;
@@ -123,9 +122,9 @@ public class MyArrayList {
 				}
 				char[] nextNeighbours = new char[howManySearchedElements];
 				int indexForNeighbours = 0;
-				for(int i = 0; i < elementCounter; i++) {
-					if(elements[i] == inputElement) {
-						nextNeighbours[indexForNeighbours] = elements[ii+1];
+				for(int j = 0; j < elementCounter-1; j++) {
+					if(elements[j] == inputElement) {
+						nextNeighbours[indexForNeighbours] = elements[j+1];
 						indexForNeighbours++;
 					}
 				}
@@ -135,10 +134,49 @@ public class MyArrayList {
 		else {
 			throw (new Exception("Input element is not found"));
 		}
+		return elements;
 		
 	}
 
-	//TODO sort
+	public char[] sort(SortingType type) throws Exception {
+		if(isEmpty()) {
+			throw (new Exception("Nothing to sort"));
+		}
+		else {
+			char[] sortArray = new char[elementCounter];
+			for(int i = 0; i < elementCounter; i++) {
+				sortArray[i] = elements[i];
+			}
+			if(type == SortingType.ASC) {
+				for(int i = 0; i < elementCounter; i++) {
+					for(int j = 0; j < elementCounter; j++) {
+						if(sortArray[i] > sortArray[j]) {
+							char temp = sortArray[i];
+							sortArray[i] = sortArray[j];
+							sortArray[j] = temp;
+						}
+						
+					}
+				}
+			}
+			else if(type == SortingType.DESC) {
+				for(int i = 0; i < elementCounter; i++) {
+					for(int j = 0; j < elementCounter; j++) {
+						if(sortArray[i] < sortArray[j]) {
+							char temp = sortArray[i];
+							sortArray[i] = sortArray[j];
+							sortArray[j] = temp;
+						}
+						
+					}
+				}
+			}
+			else {
+				throw (new Exception("Wrong sorting type"));
+			}
+			return sortArray;
+		}
+	}
 	
 	public void print() throws Exception {
 		if (isEmpty()) {
