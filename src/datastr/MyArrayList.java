@@ -71,7 +71,7 @@ public class MyArrayList {
 			throw (new Exception("Wrong index"));
 		}
 	}
-	public void remove(char newElement, int index) throws Exception {
+	public void remove(int index) throws Exception {
 		if (isEmpty()) {
 			throw (new Exception("Nothing to delete"));
 		}
@@ -81,6 +81,7 @@ public class MyArrayList {
 					elements[i] = elements[i+1];
 				}
 				elements[elementCounter-1] = 0;
+				elementCounter--;
 			}
 			else {
 				throw (new Exception("Wrong index"));
@@ -117,9 +118,11 @@ public class MyArrayList {
 				if(elements[i] == inputElement) {
 					howManySearchedElements++;
 				}
+			}
 				if(elements[elementCounter-1]==inputElement) {
 					howManySearchedElements--;
 				}
+				System.out.println("!" + howManySearchedElements);
 				char[] nextNeighbours = new char[howManySearchedElements];
 				int indexForNeighbours = 0;
 				for(int j = 0; j < elementCounter-1; j++) {
@@ -128,13 +131,13 @@ public class MyArrayList {
 						indexForNeighbours++;
 					}
 				}
-			}
 			
+		return nextNeighbours;	
 		}
 		else {
 			throw (new Exception("Input element is not found"));
 		}
-		return elements;
+		
 		
 	}
 
