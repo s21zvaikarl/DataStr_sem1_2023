@@ -124,7 +124,12 @@ public class Student implements Comparable<Student> {
 
 	@Override
 	public int compareTo(Student o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(surname.charAt(0) > o.surname.charAt(0)) {
+			return 1;
+		}
+		else if(surname.charAt(0) < o.surname.charAt(0)) {
+			return -1;
+		}
+		else return 0;
 	}
 }
