@@ -122,7 +122,6 @@ public class MyArrayList {
 				if(elements[elementCounter-1]==inputElement) {
 					howManySearchedElements--;
 				}
-				System.out.println("!" + howManySearchedElements);
 				char[] nextNeighbours = new char[howManySearchedElements];
 				int indexForNeighbours = 0;
 				for(int j = 0; j < elementCounter-1; j++) {

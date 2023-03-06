@@ -2,6 +2,7 @@ package service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -26,13 +27,22 @@ public class MainService {
 			charList.add('z');
 			charList.add('n');
 			charList.add('z');
-			System.out.println("!" +Arrays.toString(charList.retrieveNextNeighbours('n')));
+			System.out.println(Arrays.toString(charList.retrieveNextNeighbours('n')));
 			System.out.println(charList.sort(SortingType.ASC));
 			charList.print();
 			charList.clear();
 			//charList.print();
 			charList.add('d');
 			charList.print();
+			
+			System.out.println("~~~~~~~~~~~~~~~~~~~");
+			MyArrayList fileList = getArrayElementsFromFile("resources/numbers.txt");
+			
+			fileList.print();
+			fileList.add('z');
+			fileList.remove(2);
+			fileList.print();
+			System.out.println(Arrays.toString(fileList.sort(SortingType.ASC)));
 			
 
 		}
@@ -42,7 +52,7 @@ public class MainService {
 		
 	}
 	
-	public static MyArrayList getArrayElementsFromFile(String path) {
+	public static MyArrayList getArrayElementsFromFile(String path) throws FileNotFoundException {
 		File myFile = new File(path);
 		FileInputStream myInputStream = new FileInputStream(myFile);
 		Scanner myScanner = new Scanner(myInputStream);
