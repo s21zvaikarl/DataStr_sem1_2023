@@ -111,6 +111,33 @@ public class MyArrayList {
 	}
 	
 	//TODO retrieveNextNeighbor
+	public char[] retrieveNextNeighbours(char inputElement) throws Exception {
+		if(find(inputElement)) {
+			int howManySearchedElements = 0;
+			for(int i = 0; i < elementCounter; i++) {
+				if(elements[i] == inputElement) {
+					howManySearchedElements++;
+				}
+				if(elements[elementCounter-1]==inputElement) {
+					howManySearchedElements--;
+				}
+				char[] nextNeighbours = new char[howManySearchedElements];
+				int indexForNeighbours = 0;
+				for(int i = 0; i < elementCounter; i++) {
+					if(elements[i] == inputElement) {
+						nextNeighbours[indexForNeighbours] = elements[ii+1];
+						indexForNeighbours++;
+					}
+				}
+			}
+			
+		}
+		else {
+			throw (new Exception("Input element is not found"));
+		}
+		
+	}
+
 	//TODO sort
 	
 	public void print() throws Exception {
